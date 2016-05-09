@@ -10,5 +10,10 @@ def is_consistent(csp, variable, value):
     in csp.constraints), and the current assignment as Y=y, we want to check if the value x we want to assign to X
     violates the constraint c(x,y).  This method does not check c(x,Z), because Z is not yet assigned."""
 
-    # TODO implement this
-    pass
+    for constraint in csp.constraints[variable]:
+        v1 = constraint.var1
+        v2 = constraint.var2
+        if v2.is_assigned():
+            if not constraint.is_satisfied(value, v2.value):
+                return False
+    return True
