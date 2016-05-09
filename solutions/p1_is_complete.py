@@ -9,5 +9,9 @@ def is_complete(csp):
     # Also, if the variable is assigned, variable.is assigned() will be True.
     # (Note that this can happen either by explicit assignment using variable.assign(value),
     # or when the domain of the variable has been reduced to a single value.)
-`
-    pass
+
+    variables = csp.variables
+    for v in variables:
+        if not v.is_assigned():
+            return False
+    return True
