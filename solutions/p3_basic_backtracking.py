@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-
+from p1_is_complete import is_complete
+from p2_is_consistent import is_consistent
 
 
 def select_unassigned_variable(csp):
@@ -46,9 +47,20 @@ def backtrack(csp):
 
     If there is a solution, this method returns True; otherwise, it returns False.
     """
-
+    #print "Finding Match"
     # TODO implement this
-    pass
-
-
-
+    if is_complete(csp):
+        return True
+    else:
+        variable = select_unassigned_variable(csp)
+        #print variable
+        for value in order_domain_values(csp, variable):
+            #print value
+            if is_consistent(csp, variable, value):
+                #print "Found Valid"
+                csp.variables.begin_transaction()
+                variable.assign(value)
+                if backtrack(csp):
+                    return True
+                csp.variables.rollback()
+        return False
