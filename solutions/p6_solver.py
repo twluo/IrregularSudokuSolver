@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 
 from collections import deque
-
+from p1_is_complete import is_complete
+from p2_is_consistent import is_consistent
 
 def inference(csp, variable):
     """Performs an inference procedure for the variable assignment.
