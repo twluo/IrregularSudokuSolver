@@ -36,5 +36,16 @@ def order_domain_values(csp, variable):
     """
 
     # TODO implement this
+    domain = dict([(v, 0) for v in variable.domain])
 
-    return [value for value in variable.domain]
+    for constraint in csp.constraints[variable]:
+        for v1 in constraint.var1.domain:
+            for v2 in constraint.var2.domain:
+                if v1 == v2:
+                    domain[v1] += 1
+    
+            
+    tosort = domain.items()
+    sorted(tosort, key = lambda variable: variable[1])
+    
+    return [v[0] for v in tosort]
