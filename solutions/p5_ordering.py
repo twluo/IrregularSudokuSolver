@@ -11,7 +11,18 @@ def select_unassigned_variable(csp):
     """
 
     # TODO implement this
-    pass
+    sortedVar = sorted(csp.variables, key = lambda variable: len(variable.domain))
+    sortedVar = [var for var in sortedVar if not var.is_assigned()]
+    smallest = sortedVar[0]
+    lenSmallest = len([arc for arc in csp.constraints[smallest] if not arc.var2.is_assigned()])
+    for variable in sortedVar[1:]:
+        if len(variable.domain) > len(smallest.domain):
+            return smallest
+        lenVar = len([arc for arc in csp.constraints[variable] if not arc.var2.is_assigned()])
+        if lenVar > lenSmallest:
+            smallest = variable
+            lenSmallest = lenVar
+
 
 
 
@@ -24,4 +35,3 @@ def order_domain_values(csp, variable):
     """
 
     # TODO implement this
-    pass
