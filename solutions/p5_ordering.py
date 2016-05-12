@@ -22,6 +22,7 @@ def select_unassigned_variable(csp):
         if lenVar > lenSmallest:
             smallest = variable
             lenSmallest = lenVar
+    return smallest
 
 
 
@@ -35,3 +36,5 @@ def order_domain_values(csp, variable):
     """
 
     # TODO implement this
+
+    return [value for value in variable.domain]
