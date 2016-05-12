@@ -43,9 +43,8 @@ def order_domain_values(csp, variable):
             for v2 in constraint.var2.domain:
                 if v1 == v2:
                     domain[v1] += 1
-    
-            
+
+    print domain
     tosort = domain.items()
-    sorted(tosort, key = lambda variable: variable[1])
-    
+    tosort = sorted(tosort, key = lambda variable: variable[1])
     return [v[0] for v in tosort]
