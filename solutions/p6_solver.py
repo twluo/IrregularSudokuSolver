@@ -4,7 +4,7 @@ from collections import deque
 from p1_is_complete import is_complete
 from p2_is_consistent import is_consistent
 from p5_ordering import select_unassigned_variable
-from p5_ordering import order_domain_values
+from p3_basic_backtracking import order_domain_values
 
 def inference(csp, variable):
     """Performs an inference procedure for the variable assignment.
@@ -46,7 +46,6 @@ def backtrack(csp):
                 #print "Found Valid"
                 csp.variables.begin_transaction()
                 variable.assign(value)
-                inference(csp, variable)
                 if backtrack(csp):
                     return True
                 csp.variables.rollback()

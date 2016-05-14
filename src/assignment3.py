@@ -212,7 +212,7 @@ class Constraints(object):
 
         lut = self._binary_lut if type(key) is tuple else self._unary_lut
         return Constraints(lut[key]) if key in lut else Constraints([])
-        
+
     def arcs(self):
         """Returns all arcs ((v1, v2) pairs) for the constraints contained in this list."""
         return self._binary_lut.keys()
@@ -284,7 +284,7 @@ class IrregularSudoku(object):
     @staticmethod
     def print_board(N, values):
         s=''
-        for i in range(N):        
+        for i in range(N):
             for j in range(N):
                 s+=str(values[i][j])+' '
             s+='\n'
@@ -312,7 +312,7 @@ class IrregularSudoku(object):
                 list.append(var)
                 loctovar[(i,j)]=var
             variables.append(list)
-        
+
         constraints = []
         constraints += [constraint for row in variables for constraint in self.alldiffrowcol(row)]
         constraints += [constraint for j in range(self.N) \
@@ -324,7 +324,7 @@ class IrregularSudoku(object):
             for j in range(len(cells)):
                 boxvariables.append(loctovar[eval(cells[j].strip())])
             constraints +=[constraint for constraint in self.alldiffbox(boxvariables)]
-    
+
 
         return BinaryCSP([v for row in variables for v in row], constraints)
 
